@@ -28,37 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxMain = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
+            this.overlayControlMain = new jimney.OverlayControl();
             this.SuspendLayout();
             // 
-            // pictureBoxMain
+            // overlayControlMain
             // 
-            this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxMain.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(800, 600);
-            this.pictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMain.TabIndex = 0;
-            this.pictureBoxMain.TabStop = false;
+            this.overlayControlMain.Enabled = false;
+            this.overlayControlMain.Location = new System.Drawing.Point(0, 0);
+            this.overlayControlMain.Name = "overlayControlMain";
+            this.overlayControlMain.Size = new System.Drawing.Size(800, 600);
+            this.overlayControlMain.TabIndex = 0;
             // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
-            this.Controls.Add(this.pictureBoxMain);
+            this.ControlBox = false;
+            this.Controls.Add(this.overlayControlMain);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 600);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "App";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "App";
             this.Load += new System.EventHandler(this.App_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.App_KeyDown);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxMain;
+        private OverlayControl overlayControlMain;
     }
 }
 

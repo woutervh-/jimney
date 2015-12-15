@@ -18,6 +18,14 @@ namespace jimney
         public App()
         {
             InitializeComponent();
+
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            BackColor = Color.Transparent;
+        }
+
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            // base.OnPaintBackground(e);
         }
 
         private void App_Load(object sender, EventArgs e)
@@ -26,7 +34,18 @@ namespace jimney
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             {
                 SvgDocument document = SvgDocument.Open<SvgDocument>(stream);
-                pictureBoxMain.Image = document.Draw();
+                overlayControlMain.Width = (int)document.Width;
+                overlayControlMain.Height = (int)document.Height;
+                overlayControlMain.Image = document.Draw();
+            }
+        }
+
+        private void App_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                e.Handled = true;
+                Close();
             }
         }
     }
