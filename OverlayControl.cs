@@ -1,11 +1,12 @@
-﻿using System.Drawing;
+﻿using Svg;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace jimney
 {
     class OverlayControl : Control
     {
-        public Image Image
+        public SvgDocument SvgDocument
         {
             get;
             set;
@@ -28,9 +29,9 @@ namespace jimney
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            if (Image != null)
+            if (SvgDocument != null)
             {
-                e.Graphics.DrawImage(Image, ClientRectangle);
+                SvgDocument.Draw(e.Graphics);
             }
         }
     }

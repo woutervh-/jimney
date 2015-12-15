@@ -37,6 +37,7 @@
             this.overlayControlMain.Location = new System.Drawing.Point(0, 0);
             this.overlayControlMain.Name = "overlayControlMain";
             this.overlayControlMain.Size = new System.Drawing.Size(800, 600);
+            this.overlayControlMain.SvgDocument = null;
             this.overlayControlMain.TabIndex = 0;
             // 
             // App
@@ -56,6 +57,7 @@
             this.Text = "App";
             this.Load += new System.EventHandler(this.App_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.App_KeyDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.App_MouseDown);
             this.ResumeLayout(false);
 
         }
