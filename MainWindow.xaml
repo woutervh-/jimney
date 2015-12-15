@@ -5,7 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:jimney"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowStyle="None" ResizeMode="CanMinimize">
+        Title="MainWindow" Height="600" Width="800" WindowStyle="None" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries/>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         
     </Grid>
