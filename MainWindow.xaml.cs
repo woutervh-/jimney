@@ -35,18 +35,18 @@ namespace jimney
             using (Stream readStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             {
                 SvgDocument svgDocument = SvgDocument.Open<SvgDocument>(readStream);
-                BitmapImage bitmapImage = new BitmapImage();
-                MemoryStream writeStream = new MemoryStream();
+                //BitmapImage bitmapImage = new BitmapImage();
+                //MemoryStream writeStream = new MemoryStream();
 
-                svgDocument.Draw().Save(writeStream, ImageFormat.Png);
-                writeStream.Seek(0, SeekOrigin.Begin);
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = writeStream;
-                bitmapImage.EndInit();
+                //svgDocument.Draw().Save(writeStream, ImageFormat.Png);
+                //writeStream.Seek(0, SeekOrigin.Begin);
+                //bitmapImage.BeginInit();
+                //bitmapImage.StreamSource = writeStream;
+                //bitmapImage.EndInit();
 
-                imageMain.Width = (int)svgDocument.Width;
-                imageMain.Height = (int)svgDocument.Height;
-                imageMain.Source = bitmapImage;
+                svgImage.Width = (int)svgDocument.Width;
+                svgImage.Height = (int)svgDocument.Height;
+                svgImage.SvgDocument = svgDocument;
             }
         }
 
