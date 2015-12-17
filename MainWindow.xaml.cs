@@ -1,5 +1,4 @@
-﻿using Svg;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -15,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -31,22 +31,13 @@ namespace jimney
         {
             InitializeComponent();
 
-            string resourceName = "jimney.Resources.Shapes.svg";
-            using (Stream readStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+            // string content = Properties.Resources.Shapes.Replace("whiteSpaceCollapse=\"preserve\"", "xml:space=\"preserve\"");
+            string content = "";
+            byte[] contentBytes = Encoding.UTF8.GetBytes(content);
+            using (Stream contentStream = new MemoryStream(contentBytes))
             {
-                SvgDocument svgDocument = SvgDocument.Open<SvgDocument>(readStream);
-                //BitmapImage bitmapImage = new BitmapImage();
-                //MemoryStream writeStream = new MemoryStream();
-
-                //svgDocument.Draw().Save(writeStream, ImageFormat.Png);
-                //writeStream.Seek(0, SeekOrigin.Begin);
-                //bitmapImage.BeginInit();
-                //bitmapImage.StreamSource = writeStream;
-                //bitmapImage.EndInit();
-
-                svgImage.Width = (int)svgDocument.Width;
-                svgImage.Height = (int)svgDocument.Height;
-                svgImage.SvgDocument = svgDocument;
+                var shapes = XamlReader.Load(contentStream);
+                this.Content = shapes;
             }
         }
 
