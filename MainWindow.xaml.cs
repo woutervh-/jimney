@@ -1,6 +1,7 @@
 ﻿using Svg;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -32,11 +33,11 @@ namespace jimney
 
             string resourceName = "jimney.Resources.Shapes.svg";
             using (Stream readStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
-            using (MemoryStream writeStream = new MemoryStream())
             {
                 SvgDocument svgDocument = SvgDocument.Open<SvgDocument>(readStream);
-
                 BitmapImage bitmapImage = new BitmapImage();
+                MemoryStream writeStream = new MemoryStream();
+
                 svgDocument.Draw().Save(writeStream, ImageFormat.Png);
                 writeStream.Seek(0, SeekOrigin.Begin);
                 bitmapImage.BeginInit();
@@ -46,7 +47,6 @@ namespace jimney
                 imageMain.Width = (int)svgDocument.Width;
                 imageMain.Height = (int)svgDocument.Height;
                 imageMain.Source = bitmapImage;
-
             }
         }
 
