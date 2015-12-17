@@ -105,9 +105,16 @@
   <ItemGroup>
     <SvgFile Include="$(ProjectDir)\Resources\*.svg" Label="SvgFile"/>
   </ItemGroup>
+  
   <Target Name="SvgToXaml" BeforeTargets="Build" Inputs="@(SvgFile)" Outputs="@(SvgFile->'%(Filename).xaml')">
     <Exec Command="$(ProjectDir)\Tools\svg2xaml\svg2xaml @(SvgFile)" />
     <Exec Command="del $(ProjectDir)\Resources\@(SvgFile->'%(Filename).xaml.png')" />
+  </Target>
+
+  <Target Name="EmbedXaml" AfterTargets="SvgToXaml">
+    <CreateItem Include="$(ProjectDir)\Resources\*.xaml">
+      <Output ItemName="EmbeddedResource" TaskParameter="Include"/>
+    </CreateItem>
   </Target>
   
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

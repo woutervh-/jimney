@@ -31,6 +31,8 @@ namespace jimney
         {
             InitializeComponent();
 
+            var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
+
             // string content = Properties.Resources.Shapes.Replace("whiteSpaceCollapse=\"preserve\"", "xml:space=\"preserve\"");
             string content = "";
             byte[] contentBytes = Encoding.UTF8.GetBytes(content);
