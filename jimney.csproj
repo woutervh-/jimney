@@ -111,10 +111,12 @@
     <Exec Command="del $(ProjectDir)\Resources\@(SvgFile->'%(Filename).xaml.png')" />
   </Target>
 
-  <Target Name="EmbedXaml" AfterTargets="SvgToXaml">
-    <CreateItem Include="$(ProjectDir)\Resources\*.xaml">
-      <Output ItemName="EmbeddedResource" TaskParameter="Include"/>
-    </CreateItem>
+  <ItemGroup>
+    <EmbeddedResource Include="$(ProjectDir)\Resources\*.xaml"/>
+  </ItemGroup>
+
+  <Target Name="Cleanup" AfterTargets="Build">
+    <Exec Command="del $(ProjectDir)\Resources\*.xaml" />
   </Target>
   
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
