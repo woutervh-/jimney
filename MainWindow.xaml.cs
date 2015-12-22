@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -33,12 +31,13 @@ namespace jimney
 
             var resources = Assembly.GetExecutingAssembly().GetManifestResourceNames();
 
-            // string content = Properties.Resources.Shapes.Replace("whiteSpaceCollapse=\"preserve\"", "xml:space=\"preserve\"");
-            byte[] content = File.ReadAllBytes("Shapes.xaml");
-            using (Stream contentStream = new MemoryStream(content))
+            string content = File.ReadAllText("Shapes2.xaml").Replace("whiteSpaceCollapse=\"preserve\"", "xml:space=\"preserve\"");
+            using (Stream contentStream = new MemoryStream(Encoding.UTF8.GetBytes(content)))
             {
-                var shapes = XamlReader.Load(contentStream);
-                this.Content = shapes;
+                // var shapes = XamlReader.Load(contentStream);
+                var image = new Image();
+                image.Source = new BitmapImage(new Uri(System.IO.Path.Combine(Environment.CurrentDirectory, "Shapes.png")));
+                this.Content = image;
             }
         }
 
